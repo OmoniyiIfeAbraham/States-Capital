@@ -35,4 +35,5 @@ export const Data = [
   { id: 33, state: "Taraba State", capital: "Jalingo" },
   { id: 34, state: "Yobe State", capital: "Damaturu" },
   { id: 35, state: "Zamfara State", capital: "Gusau" },
+  { id: 36, state: "Federal Capital Territory (FCT)", capital: "Abuja" },
 ];
