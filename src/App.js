@@ -5,7 +5,6 @@ import { Data } from "./data/states&capitals";
 
 function App() {
   const [search, setSearch] = useState("");
-  console.log(search);
 
   return (
     <div className="App">
