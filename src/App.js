@@ -6,10 +6,18 @@ import { Data } from "./data/states&capitals";
 function App() {
   const [search, setSearch] = useState("");
 
+  // Filter the data based on the search input
+  const filteredData = Data.filter((item) => {
+    return search.toLocaleLowerCase() === ""
+      ? item
+      : item.state.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
+          item.capital.toLocaleLowerCase().includes(search.toLocaleLowerCase());
+  });
+
   return (
     <div className="App">
       <div className="container">
-        <h1 className="text-center mt-4">State And Capitals</h1>
+        <h1 className="text-center mt-4">States And Capitals</h1>
         <form>
           <div className="input-group my-3">
             <input
@@ -29,18 +37,21 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {Data.filter((item) => {
-              return search.toLocaleLowerCase() === ""
-                ? item
-                : item.state.toLocaleLowerCase().includes(search) ||
-                    item.capital.toLocaleLowerCase().includes(search);
-            }).map((item) => (
-              <tr key={item.id}>
-                <td>{item.id + 1}</td>
-                <td>{item.state}</td>
-                <td>{item.capital}</td>
+            {filteredData.length > 0 ? (
+              filteredData.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.id + 1}</td>
+                  <td>{item.state}</td>
+                  <td>{item.capital}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="3" className="text-center">
+                  No result matches your search
+                </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
